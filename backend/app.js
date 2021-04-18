@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 const { graphqlHTTP  } = require('express-graphql')
 const movieSchema = require('./schema/movieSchema')
 const movieResolvers = require('./resolvers/movieResolvers')
@@ -15,12 +16,7 @@ mongoose.connect('mongodb+srv://admin:admin@react-node-graphql.qnsgz.mongodb.net
 .then(() => console.log('Connected to MongoDB!'))
 .catch((error) => console.log('Error', error))
 
-
-const rootValue = {
-    name: () => {
-        return 'Hello from GraphQL'
-    }
-}
+app.use(cors())
 
 // Setup GraphQL
 app.use('/graphql', graphqlHTTP({
