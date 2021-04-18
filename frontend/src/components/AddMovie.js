@@ -37,6 +37,9 @@ function AddMovie() {
   const submitMovie = (event) => {
     event.preventDefault();
     add_movie({ variables: { name, genre, year } });
+    setName("");
+    setGenre("");
+    setYear("");
   };
 
   return (
@@ -49,6 +52,7 @@ function AddMovie() {
           id=""
           required
           onChange={(event) => setName(event.target.value)}
+          value={name}
         />
         <label htmlFor="">Genre</label>
         <input
@@ -57,6 +61,7 @@ function AddMovie() {
           id=""
           required
           onChange={(event) => setGenre(event.target.value)}
+          value={genre}
         />
         <label htmlFor="">Year</label>
         <input
@@ -65,6 +70,7 @@ function AddMovie() {
           id=""
           placeholder="(optional)"
           onChange={(event) => setYear(event.target.value)}
+          value={year}
         />
         <button type="submit">Add Movie</button>
       </form>
