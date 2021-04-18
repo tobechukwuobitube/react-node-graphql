@@ -1,7 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const { graphqlHTTP  } = require('express-graphql')
-const { buildSchema } = require('graphql')
+const movieSchema = require('./schema/movieSchema')
+const movieResolvers = require('./resolvers/movieResolvers')
+
 
 const app = express()
 
@@ -13,11 +15,6 @@ mongoose.connect('mongodb+srv://admin:admin@react-node-graphql.qnsgz.mongodb.net
 .then(() => console.log('Connected to MongoDB!'))
 .catch((error) => console.log('Error', error))
 
-const schema = buildSchema(`
-    type Query {
-        name: String
-    }
-`)
 
 const rootValue = {
     name: () => {
@@ -27,9 +24,9 @@ const rootValue = {
 
 // Setup GraphQL
 app.use('/graphql', graphqlHTTP({
-    schema: schema,
+    schema: movieSchema,
     graphiql: true,
-    rootValue
+    rootValue: movieResolvers
 }))
 
 app.get('/', (req, res) => {
