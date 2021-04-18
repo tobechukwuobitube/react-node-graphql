@@ -11,6 +11,7 @@ const movieSchema = buildSchema(`
     }
 
     type Movie {
+        id: String,
         name: String,
         genre: String,
         year: String

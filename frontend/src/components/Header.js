@@ -1,4 +1,5 @@
 import React from "react";
+import { HashLink as Link } from 'react-router-hash-link'
 
 function Header() {
   return (
@@ -8,7 +9,7 @@ function Header() {
       </a>
       <div className="search-container">
         <form action="">
-          <a href="/">Add Movies</a>
+          <Link smooth to="#form">Add Movies</Link>
           <input type="text" name="search" id="" placeholder="Search.." />
           <button type="submit">
             <i className="far fa-search"></i>

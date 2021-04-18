@@ -13,7 +13,7 @@ const allMovies = gql`
 `;
 
 function Movies() {
-  const { loading, error, data } = useQuery(allMovies);
+  const { loading, error, data, refetch } = useQuery(allMovies);
   console.log(data);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
@@ -29,6 +29,7 @@ function Movies() {
             genre={movie.genre}
             year={movie.year}
             image={movie.image}
+            refetch={refetch}
           />
         );
       })}
